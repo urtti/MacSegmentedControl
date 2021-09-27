@@ -11,16 +11,13 @@ import Cocoa
 class SegmentOverlay: NSView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        setProperties()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setProperties()
     }
 
-    private func setProperties() {
-        wantsLayer = true
+    override func updateLayer() {
         layer?.backgroundColor = NSColor(named: "SegmentColor")!.cgColor
         layer?.cornerRadius = 6.93
     }

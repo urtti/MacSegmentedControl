@@ -10,20 +10,19 @@ import Cocoa
 
 class Segment: NSTextField {
     var segmentDelegate : SegmentDelegate?
-    private var labelText : String = ""
+    var unselectedFont = NSFont.systemFont(ofSize: 13, weight: .medium)
+    var selectedFont = NSFont.systemFont(ofSize: 13, weight: .semibold)
 
     convenience init(label : String, segmentDelegate : SegmentDelegate? = nil) {
         let paragraphStyle = NSMutableParagraphStyle(alignment : .center)
         let attributes: [NSAttributedString.Key: Any] = [ NSAttributedString.Key.kern: -0.25, NSAttributedString.Key.paragraphStyle : paragraphStyle]
         self.init(labelWithAttributedString: NSAttributedString(string: label, attributes: attributes))
-        labelText = label
         backgroundColor = .clear
         font = NSFont.systemFont(ofSize: 13, weight: .semibold)
         self.segmentDelegate = segmentDelegate
     }
 
     override func mouseDown(with event: NSEvent) {
-        print("\(self.stringValue)")
         segmentDelegate?.segmentWasSelected(self)
     }
 
@@ -36,10 +35,10 @@ class Segment: NSTextField {
     }
 
     private func setUnselectedFont() {
-        font = NSFont.systemFont(ofSize: 13, weight: .medium)
+        font = unselectedFont
     }
 
     private func setSelectedFont() {
-        font = NSFont.systemFont(ofSize: 13, weight: .semibold)
+        font = selectedFont
     }
 }

@@ -18,21 +18,41 @@ protocol SegmentDelegate {
     func segmentWasSelected(_ sender : Segment)
 }
 
+enum SegmentControlStyle {
+    case equal
+    case proportional
+
+    var stackViewDistribution : NSStackView.Distribution {
+        switch self {
+        case .equal: return .fillEqually
+        case .proportional : return .fillProportionally
+        }
+    }
+}
+
 class SegmentControl: NSView, SegmentDelegate {
+    var delegate : SegmentControlDelegate?
+
     private var segments = [Segment]()
     private var dividers = [Divider]()
     private let segmentOverlay = SegmentOverlay(frame: .zero)
-    private let stack : SegmentStack!
+    private var stack : NSStackView!
     private var selectedSegment : Segment?
-    var delegate : SegmentControlDelegate?
+    private var style : SegmentControlStyle!
 
-    init(labels : [String], frame : NSRect) {
-        segments = labels.compactMap({ Segment(label: $0)})
-        selectedSegment = segments[0]
-        stack = SegmentStack(frame: NSRect(origin: .zero, size: CGSize(width: frame.width, height: SEGMENTCONTROL_HEIGHT)))
+    private var changeCallbacks = [(Int, String) -> Void]()
 
+    func onChange(_ newCallback : @escaping (Int, String) -> Void) {
+        changeCallbacks.append(newCallback)
+    }
+
+    init(labels : [String], frame : NSRect, style : SegmentControlStyle) {
         super.init(frame: frame)
-        createViewsForStackView()
+        self.segments = labels.compactMap({ Segment(label: $0)})
+        self.selectedSegment = segments[0]
+        self.style = style
+
+        createViewsForStackView(style: style)
         addSubview(segmentOverlay)
         addSubview(stack)
 
@@ -42,8 +62,6 @@ class SegmentControl: NSView, SegmentDelegate {
         for (index, d) in dividers.enumerated() {
             d.animator().alphaValue = (0 == index) ? 0.0 : 1.0
         }
-
-        setProperties()
     }
 
     required init?(coder: NSCoder) {
@@ -58,7 +76,10 @@ class SegmentControl: NSView, SegmentDelegate {
         }
 
         selectedSegment = sender
+
+        // Callbacks to delegate pattern and callbacks
         delegate?.segmentWasSelected(self, index: newIndex)
+        changeCallbacks.forEach({ $0(newIndex, selectedSegment?.attributedStringValue.string ?? "") })
 
         // Set styles for segments based on selection
         segments.forEach({ $0.selectionChanged(didSelect : $0 == selectedSegment) })
@@ -83,31 +104,56 @@ class SegmentControl: NSView, SegmentDelegate {
         }
     }
 
-    private func sizeForSegment(_ segment : NSView) -> CGSize {
-        // Segments
-        let segmentsWidth = segments
-            .compactMap({$0.intrinsicContentSize.width})
-            .reduce(CGFloat.zero, { x, y in
-                x + y
-            })
-
-        // Dividers
-        let dividersWidth = dividers
-            .compactMap({$0.intrinsicContentSize.width})
-            .reduce(CGFloat.zero, { x, y in
-                x + y
-            })
-
-        let proportion = selectedSegment!.intrinsicContentSize.width / (segmentsWidth + dividersWidth)
-        return CGSize(width: (frame.width - SEGMENT_OVERLAY_PADDING * 2) * proportion, height: frame.height - SEGMENT_OVERLAY_PADDING * 2)
+    // More customization could be built through the top level UI component like this
+    // preferably building some style palette that would dictate what can be configured
+    // and it could be given at init or afterwards.
+    func setUnselectedFont(font : NSFont) {
+        segments.forEach({
+            $0.unselectedFont = font
+            $0.selectionChanged(didSelect : $0 == selectedSegment)
+        })
     }
 
-    private func createViewsForStackView() {
+    func setSelectedFont(font : NSFont) {
+        segments.forEach({
+            $0.selectedFont = font
+            $0.selectionChanged(didSelect : $0 == selectedSegment)
+        })
+    }
+
+    private func sizeForSegment(_ segment : NSView) -> CGSize {
+        switch style {
+        case .equal:
+            return CGSize(width: (frame.width - SEGMENT_OVERLAY_PADDING * 2) / CGFloat(segments.count), height: frame.height - SEGMENT_OVERLAY_PADDING * 2)
+        case .proportional:
+            // Segments
+            let segmentsWidth = segments
+                .compactMap({$0.intrinsicContentSize.width})
+                .reduce(CGFloat.zero, { x, y in
+                    x + y
+                })
+
+            // Dividers
+            let dividersWidth = dividers
+                .compactMap({$0.intrinsicContentSize.width})
+                .reduce(CGFloat.zero, { x, y in
+                    x + y
+                })
+
+            let proportion = selectedSegment!.intrinsicContentSize.width / (segmentsWidth + dividersWidth)
+            return CGSize(width: (frame.width - SEGMENT_OVERLAY_PADDING * 2) * proportion, height: frame.height - SEGMENT_OVERLAY_PADDING * 2)
+        case .none: return .zero
+        }
+    }
+
+    private func createViewsForStackView(style : SegmentControlStyle) {
+        stack = NSStackView(frame: NSRect(origin: .zero, size: CGSize(width: frame.width, height: SEGMENTCONTROL_HEIGHT)))
+
         for (index, s) in segments.enumerated() {
             s.segmentDelegate = self
 
             // Create dividers
-            if index > 0 {
+            if style == .proportional && index > 0 {
                 let divider = Divider()
                 dividers.append(divider)
                 stack.addView(divider, in: .leading)
@@ -115,10 +161,14 @@ class SegmentControl: NSView, SegmentDelegate {
 
             stack.addView(s, in: .leading)
         }
+
+        stack.spacing = 0
+        stack.alignment = .centerY
+        stack.wantsLayer = true
+        stack.distribution = style.stackViewDistribution
     }
 
-    private func setProperties() {
-        wantsLayer = true
+    override func updateLayer() {
         layer?.backgroundColor = NSColor(named: "SegmentBackgroundColor")!.cgColor
         layer?.cornerRadius = 8.91
     }

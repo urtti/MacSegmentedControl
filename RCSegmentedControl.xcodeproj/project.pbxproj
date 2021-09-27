@@ -18,7 +18,6 @@
 		7DEBA9B726FFBF7C00E53520 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */; };
 		7DEBA9B926FFBFB900E53520 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9B826FFBFB900E53520 /* Divider.swift */; };
 		7DEBA9BB26FFBFD400E53520 /* SegmentOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */; };
-		7DEBA9BD26FFBFEA00E53520 /* SegmentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,6 @@
 		7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		7DEBA9B826FFBFB900E53520 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentOverlay.swift; sourceTree = "<group>"; };
-		7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +143,6 @@
 				7DEBA9B426FFBF7200E53520 /* Segment.swift */,
 				7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */,
 				7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */,
-				7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 				7DEBA94D26FE7E6200E53520 /* AppDelegate.swift in Sources */,
 				7DEBA9BB26FFBFD400E53520 /* SegmentOverlay.swift in Sources */,
 				7DEBA9B726FFBF7C00E53520 /* SegmentControl.swift in Sources */,
-				7DEBA9BD26FFBFEA00E53520 /* SegmentStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

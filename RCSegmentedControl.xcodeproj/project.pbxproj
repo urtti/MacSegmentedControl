@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D5AFC462701A4F000B295EE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AFC452701A4F000B295EE /* Extensions.swift */; };
 		7DEBA94D26FE7E6200E53520 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA94C26FE7E6200E53520 /* AppDelegate.swift */; };
 		7DEBA94F26FE7E6200E53520 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA94E26FE7E6200E53520 /* ViewController.swift */; };
 		7DEBA95126FE7E6300E53520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DEBA95026FE7E6300E53520 /* Assets.xcassets */; };
 		7DEBA95426FE7E6300E53520 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEBA95226FE7E6300E53520 /* Main.storyboard */; };
 		7DEBA96026FE7E6300E53520 /* RCSegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA95F26FE7E6300E53520 /* RCSegmentedControlTests.swift */; };
 		7DEBA96B26FE7E6300E53520 /* RCSegmentedControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA96A26FE7E6300E53520 /* RCSegmentedControlUITests.swift */; };
+		7DEBA9B526FFBF7200E53520 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9B426FFBF7200E53520 /* Segment.swift */; };
+		7DEBA9B726FFBF7C00E53520 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */; };
+		7DEBA9B926FFBFB900E53520 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9B826FFBFB900E53520 /* Divider.swift */; };
+		7DEBA9BB26FFBFD400E53520 /* SegmentOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */; };
+		7DEBA9BD26FFBFEA00E53520 /* SegmentStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D5AFC452701A4F000B295EE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7DEBA94926FE7E6200E53520 /* RCSegmentedControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCSegmentedControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEBA94C26FE7E6200E53520 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DEBA94E26FE7E6200E53520 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +53,11 @@
 		7DEBA96626FE7E6300E53520 /* RCSegmentedControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCSegmentedControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEBA96A26FE7E6300E53520 /* RCSegmentedControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCSegmentedControlUITests.swift; sourceTree = "<group>"; };
 		7DEBA96C26FE7E6300E53520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DEBA9B426FFBF7200E53520 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
+		7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		7DEBA9B826FFBFB900E53520 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
+		7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentOverlay.swift; sourceTree = "<group>"; };
+		7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +108,14 @@
 		7DEBA94B26FE7E6200E53520 /* RCSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
+				7DEBA9B326FFBF6300E53520 /* Views */,
 				7DEBA94C26FE7E6200E53520 /* AppDelegate.swift */,
 				7DEBA94E26FE7E6200E53520 /* ViewController.swift */,
 				7DEBA95026FE7E6300E53520 /* Assets.xcassets */,
 				7DEBA95226FE7E6300E53520 /* Main.storyboard */,
 				7DEBA95526FE7E6300E53520 /* Info.plist */,
 				7DEBA95626FE7E6300E53520 /* RCSegmentedControl.entitlements */,
+				7D5AFC452701A4F000B295EE /* Extensions.swift */,
 			);
 			path = RCSegmentedControl;
 			sourceTree = "<group>";
@@ -122,6 +136,18 @@
 				7DEBA96C26FE7E6300E53520 /* Info.plist */,
 			);
 			path = RCSegmentedControlUITests;
+			sourceTree = "<group>";
+		};
+		7DEBA9B326FFBF6300E53520 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DEBA9B826FFBFB900E53520 /* Divider.swift */,
+				7DEBA9B426FFBF7200E53520 /* Segment.swift */,
+				7DEBA9B626FFBF7C00E53520 /* SegmentControl.swift */,
+				7DEBA9BA26FFBFD400E53520 /* SegmentOverlay.swift */,
+				7DEBA9BC26FFBFEA00E53520 /* SegmentStack.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DEBA94F26FE7E6200E53520 /* ViewController.swift in Sources */,
+				7DEBA9B526FFBF7200E53520 /* Segment.swift in Sources */,
+				7DEBA9B926FFBFB900E53520 /* Divider.swift in Sources */,
+				7D5AFC462701A4F000B295EE /* Extensions.swift in Sources */,
 				7DEBA94D26FE7E6200E53520 /* AppDelegate.swift in Sources */,
+				7DEBA9BB26FFBFD400E53520 /* SegmentOverlay.swift in Sources */,
+				7DEBA9B726FFBF7C00E53520 /* SegmentControl.swift in Sources */,
+				7DEBA9BD26FFBFEA00E53520 /* SegmentStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

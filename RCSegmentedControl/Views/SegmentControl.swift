@@ -48,7 +48,7 @@ class SegmentControl: NSView, SegmentDelegate {
 
     init(labels : [String], frame : NSRect, style : SegmentControlStyle) {
         super.init(frame: frame)
-        self.segments = labels.compactMap({ Segment(label: $0)})
+        self.segments = labels.indices.compactMap({ Segment(label: labels[$0], selected: $0 == 0, delegate: self)})
         self.selectedSegment = segments[0]
         self.style = style
 

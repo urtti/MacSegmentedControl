@@ -20,7 +20,7 @@ class ViewController:  NSViewController, SegmentControlDelegate {
     private var sink : Any?
 
     func segmentWasSelected(_ sender: SegmentControl, index: Int?) {
-        print("You could also be using the delegate pattern")
+        print("You could also be using the delegate pattern!")
     }
 
     override func viewDidLoad() {

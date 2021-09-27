@@ -13,12 +13,10 @@ class Segment: NSTextField {
     var unselectedFont = NSFont.systemFont(ofSize: 13, weight: .medium)
     var selectedFont = NSFont.systemFont(ofSize: 13, weight: .semibold)
 
-    convenience init(label : String, segmentDelegate : SegmentDelegate? = nil) {
-        let paragraphStyle = NSMutableParagraphStyle(alignment : .center)
-        let attributes: [NSAttributedString.Key: Any] = [ NSAttributedString.Key.kern: -0.25, NSAttributedString.Key.paragraphStyle : paragraphStyle]
-        self.init(labelWithAttributedString: NSAttributedString(string: label, attributes: attributes))
+    convenience init(label : String, selected : Bool, delegate segmentDelegate : SegmentDelegate? = nil) {
+        self.init(labelWithAttributedString: NSAttributedString(string: label, attributes: [ NSAttributedString.Key.kern: -0.25, NSAttributedString.Key.paragraphStyle : NSMutableParagraphStyle(alignment : .center)]))
         backgroundColor = .clear
-        font = NSFont.systemFont(ofSize: 13, weight: .semibold)
+        selectionChanged(didSelect: selected)
         self.segmentDelegate = segmentDelegate
     }
 

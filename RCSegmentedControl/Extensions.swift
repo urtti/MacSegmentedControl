@@ -14,3 +14,10 @@ extension NSMutableParagraphStyle {
         self.alignment = alignment
     }
 }
+
+extension NSAppearance {
+    // This is a bit hacky, would prefer a better way 
+    static func isDarkMode() -> Bool {
+        NSAppearance.current.name.rawValue == "NSAppearanceNameDarkAqua"
+    }
+}
